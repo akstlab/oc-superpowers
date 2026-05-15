@@ -10,7 +10,7 @@ Ask these before changing files:
 
 ```text
 Should I install OCSuperpowers into this local project only, or globally for all OpenCode projects on this machine?
-```
+````
 
 If the user chooses local and you are not already inside the target repository, ask for the target project path.
 
@@ -81,7 +81,6 @@ Before copying, verify the required source files exist:
 ```bash
 test -f "$SRC/.opencode/agents/OCSuperpower.md"
 find "$SRC/.opencode/agents" -maxdepth 1 -type f -name 'ocsp-*.md' | sort
-test -d "$SRC/.opencode/ocsuperpower/source-skills"
 ```
 
 If any required source path is missing, stop and report the missing path.
@@ -93,13 +92,11 @@ Use this when the user wants OCSuperpowers available only inside one repository.
 ```bash
 TARGET="/absolute/path/to/project"
 mkdir -p "$TARGET/.opencode/agents"
-mkdir -p "$TARGET/.opencode/ocsuperpower"
+
 cp "$SRC/.opencode/agents/OCSuperpower.md" "$TARGET/.opencode/agents/"
 cp "$SRC"/.opencode/agents/ocsp-*.md "$TARGET/.opencode/agents/"
-rm -rf "$TARGET/.opencode/ocsuperpower/source-skills"
-cp -R "$SRC/.opencode/ocsuperpower/source-skills" "$TARGET/.opencode/ocsuperpower/"
+
 AGENT_DIR="$TARGET/.opencode/agents"
-REF_DIR="$TARGET/.opencode/ocsuperpower"
 ```
 
 ## Global install procedure
@@ -108,14 +105,13 @@ Use this when the user wants OCSuperpowers available in all OpenCode projects.
 
 ```bash
 OC_CONFIG="$HOME/.config/opencode"
+
 mkdir -p "$OC_CONFIG/agents"
-mkdir -p "$OC_CONFIG/ocsuperpower"
+
 cp "$SRC/.opencode/agents/OCSuperpower.md" "$OC_CONFIG/agents/"
 cp "$SRC"/.opencode/agents/ocsp-*.md "$OC_CONFIG/agents/"
-rm -rf "$OC_CONFIG/ocsuperpower/source-skills"
-cp -R "$SRC/.opencode/ocsuperpower/source-skills" "$OC_CONFIG/ocsuperpower/"
+
 AGENT_DIR="$OC_CONFIG/agents"
-REF_DIR="$OC_CONFIG/ocsuperpower"
 ```
 
 If OpenCode reveals a different global config path, use that path instead of `~/.config/opencode`.
@@ -138,7 +134,6 @@ After either install type, check every installed agent file:
 2. `OCSuperpower.md` has `mode: primary`.
 3. Every `ocsp-*.md` has `mode: subagent`.
 4. `dispatching-parallel-agents` was not created as a separate agent.
-5. The preserved source-skill references exist under the OCSuperpowers reference directory.
 
 Suggested validation command:
 
@@ -146,37 +141,50 @@ Suggested validation command:
 python3 - <<'PY'
 from pathlib import Path
 import os
+
 agent_dir = Path(os.environ.get('AGENT_DIR', '.opencode/agents')).expanduser()
-ref_dir = Path(os.environ.get('REF_DIR', '.opencode/ocsuperpower')).expanduser()
+
 if not agent_dir.exists():
     raise SystemExit(f'missing agent dir: {agent_dir}')
+
 errors = []
+
 files = sorted(agent_dir.glob('OCSuperpower.md')) + sorted(agent_dir.glob('ocsp-*.md'))
+
 for path in files:
     text = path.read_text()
+
     if not text.startswith('---\n'):
         errors.append(f'{path}: missing YAML frontmatter')
         continue
+
     end = text.find('\n---\n', 4)
+
     if end == -1:
         errors.append(f'{path}: unterminated YAML frontmatter')
         continue
+
     fm = text[4:end]
+
     if path.name == 'OCSuperpower.md' and 'mode: primary' not in fm:
         errors.append(f'{path}: OCSuperpower must be mode: primary')
+
     if path.name.startswith('ocsp-') and 'mode: subagent' not in fm:
         errors.append(f'{path}: ocsp agent must be mode: subagent')
+
     if 'dispatching-parallel-agents' in path.name:
-        errors.append(f'{path}: dispatching-parallel-agents should be folded into OCSuperpower, not installed separately')
-if not (ref_dir / 'source-skills').exists():
-    errors.append(f'{ref_dir / "source-skills"}: missing preserved source skills')
+        errors.append(
+            f'{path}: dispatching-parallel-agents should be folded into OCSuperpower, not installed separately'
+        )
+
 if errors:
     raise SystemExit('\n'.join(errors))
+
 print(f'validated {len(files)} agent files in {agent_dir}')
 PY
 ```
 
-Set `AGENT_DIR` and `REF_DIR` to the installed paths before running the command.
+Set `AGENT_DIR` to the installed path before running the command.
 
 ## Optional model customization
 
@@ -192,14 +200,14 @@ Do this only after install validation passes. Reuse the install scope and `AGENT
 
 After installing, report:
 
-- whether the install was local or global;
-- the install path;
-- the number of installed agent files;
-- whether `OCSuperpower.md` is primary;
-- whether all `ocsp-*` files are subagents;
-- whether model customization was skipped or completed;
-- any warnings about config-path assumptions;
-- whether the temporary clone was deleted.
+* whether the install was local or global;
+* the install path;
+* the number of installed agent files;
+* whether `OCSuperpower.md` is primary;
+* whether all `ocsp-*` files are subagents;
+* whether model customization was skipped or completed;
+* any warnings about config-path assumptions;
+* whether the temporary clone was deleted.
 
 Then suggest:
 
