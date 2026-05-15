@@ -34,7 +34,6 @@ For local updates:
 
 ```text
 <TARGET_PROJECT>/.opencode/agents
-<TARGET_PROJECT>/.opencode/ocsuperpower
 ```
 
 For global updates, inspect the installed OpenCode configuration path. Prefer OpenCode's own config discovery/help if available:
@@ -54,7 +53,6 @@ Then use:
 
 ```text
 <OPEN_CODE_CONFIG>/agents
-<OPEN_CODE_CONFIG>/ocsuperpower
 ```
 
 If the selected install path does not exist, stop and ask whether to perform a fresh install using:
@@ -116,7 +114,6 @@ Before copying, verify the required source files exist:
 ```bash
 test -f "$SRC/.opencode/agents/OCSuperpower.md"
 find "$SRC/.opencode/agents" -maxdepth 1 -type f -name 'ocsp-*.md' | sort
-test -d "$SRC/.opencode/ocsuperpower/source-skills"
 ```
 
 If any required source path is missing, stop and report the missing path.
@@ -126,25 +123,23 @@ If any required source path is missing, stop and report the missing path.
 For local installs:
 
 ```bash
-mkdir -p "$TARGET/.opencode/agents" "$TARGET/.opencode/ocsuperpower"
+mkdir -p "$TARGET/.opencode/agents"
+
 cp "$SRC/.opencode/agents/OCSuperpower.md" "$TARGET/.opencode/agents/"
 cp "$SRC"/.opencode/agents/ocsp-*.md "$TARGET/.opencode/agents/"
-rm -rf "$TARGET/.opencode/ocsuperpower/source-skills"
-cp -R "$SRC/.opencode/ocsuperpower/source-skills" "$TARGET/.opencode/ocsuperpower/"
+
 AGENT_DIR="$TARGET/.opencode/agents"
-REF_DIR="$TARGET/.opencode/ocsuperpower"
 ```
 
 For global installs:
 
 ```bash
-mkdir -p "$OC_CONFIG/agents" "$OC_CONFIG/ocsuperpower"
+mkdir -p "$OC_CONFIG/agents"
+
 cp "$SRC/.opencode/agents/OCSuperpower.md" "$OC_CONFIG/agents/"
 cp "$SRC"/.opencode/agents/ocsp-*.md "$OC_CONFIG/agents/"
-rm -rf "$OC_CONFIG/ocsuperpower/source-skills"
-cp -R "$SRC/.opencode/ocsuperpower/source-skills" "$OC_CONFIG/ocsuperpower/"
+
 AGENT_DIR="$OC_CONFIG/agents"
-REF_DIR="$OC_CONFIG/ocsuperpower"
 ```
 
 ## Re-apply preserved model frontmatter
@@ -177,14 +172,12 @@ Verify:
 2. Every `ocsp-*.md` exists and has `mode: subagent`.
 3. `dispatching-parallel-agents` does not exist as a standalone agent.
 4. Existing `model:` assignments were preserved or intentionally replaced.
-5. `.opencode/ocsuperpower/source-skills/` exists for audit/reference.
 
 Suggested checks:
 
 ```bash
 find "$AGENT_DIR" -maxdepth 1 -type f \( -name 'OCSuperpower.md' -o -name 'ocsp-*.md' \) | sort
 grep -R "^model:" "$AGENT_DIR" 2>/dev/null || true
-test -d "$REF_DIR/source-skills"
 ```
 
 ## Optional model customization
