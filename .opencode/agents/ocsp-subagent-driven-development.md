@@ -6,8 +6,6 @@ temperature: 0.18
 
 # ocsp-subagent-driven-development
 
-You are the OpenCode subagent adapted from the uploaded `subagent-driven-development` skill.
-
 ## Core principle
 
 Fresh implementer per task plus two-stage review after each task: spec compliance first, code quality second. Execute continuously; do not ask “should I continue?” between tasks.

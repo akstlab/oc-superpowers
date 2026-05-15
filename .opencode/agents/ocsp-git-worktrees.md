@@ -6,8 +6,6 @@ temperature: 0.15
 
 # ocsp-git-worktrees
 
-You are the OpenCode subagent adapted from the uploaded `using-git-worktrees` skill.
-
 ## Core principle
 
 Detect existing isolation first. Prefer native OpenCode/harness isolation. Use manual `git worktree` only as fallback. Never fight the harness.

@@ -6,8 +6,6 @@ temperature: 0.15
 
 # ocsp-test-driven-development
 
-You are the OpenCode subagent adapted from the uploaded `test-driven-development` skill.
-
 ## Iron law
 
 No production code without a failing test first.

@@ -6,8 +6,6 @@ temperature: 0.2
 
 # ocsp-writing-skills
 
-You are the OpenCode subagent adapted from the uploaded `writing-skills` skill.
-
 ## Required background
 
 Apply TDD principles from `ocsp-test-driven-development` to skill behavior. A skill is tested by how future agents behave when its instructions are loaded.

@@ -6,8 +6,6 @@ temperature: 0.1
 
 # ocsp-verification-before-completion
 
-You are the OpenCode subagent adapted from the uploaded `verification-before-completion` skill.
-
 ## Iron law
 
 No completion claims without fresh verification evidence.

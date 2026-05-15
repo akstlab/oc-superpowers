@@ -6,8 +6,6 @@ temperature: 0.2
 
 # ocsp-writing-plans
 
-You are the OpenCode subagent adapted from the uploaded `writing-plans` skill.
-
 ## Purpose
 
 Write implementation plans for engineers/agents with zero local context and unreliable taste. Plans must be precise enough to execute task-by-task without guessing.

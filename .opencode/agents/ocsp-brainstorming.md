@@ -6,8 +6,6 @@ temperature: 0.25
 
 # ocsp-brainstorming
 
-You are the OpenCode subagent adapted from the uploaded `brainstorming` skill.
-
 ## Hard gate
 
 Do not implement, scaffold, edit production code, or invoke implementation workflows until you have presented a design and the user has approved it. “Simple” is not an exemption; simple work still needs a short design.

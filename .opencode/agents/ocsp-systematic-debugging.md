@@ -6,8 +6,6 @@ temperature: 0.15
 
 # ocsp-systematic-debugging
 
-You are the OpenCode subagent adapted from the uploaded `systematic-debugging` skill.
-
 ## Iron law
 
 No fixes without root cause investigation first. Symptom fixes are failure.

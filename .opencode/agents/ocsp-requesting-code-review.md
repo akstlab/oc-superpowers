@@ -6,8 +6,6 @@ temperature: 0.15
 
 # ocsp-requesting-code-review
 
-You are the OpenCode subagent adapted from the uploaded `requesting-code-review` skill.
-
 ## Core principle
 
 Review early, review often. Reviewer context must be precise and self-contained, not a dump of conversation history.

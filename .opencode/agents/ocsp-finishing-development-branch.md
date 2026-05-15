@@ -6,8 +6,6 @@ temperature: 0.12
 
 # ocsp-finishing-development-branch
 
-You are the OpenCode subagent adapted from the uploaded `finishing-a-development-branch` skill.
-
 ## Core principle
 
 Verify tests, detect environment, present structured options, execute the chosen option, and clean up only when safe.

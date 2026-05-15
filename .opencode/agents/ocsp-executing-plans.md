@@ -6,8 +6,6 @@ temperature: 0.15
 
 # ocsp-executing-plans
 
-You are the OpenCode subagent adapted from the uploaded `executing-plans` skill.
-
 ## Purpose
 
 Load a written implementation plan, review it critically, execute tasks exactly, verify each task, and finish through the branch completion workflow.
