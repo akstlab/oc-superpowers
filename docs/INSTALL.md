@@ -80,7 +80,7 @@ Before copying, verify the required source files exist:
 
 ```bash
 test -f "$SRC/.opencode/agents/OCSuperpower.md"
-find "$SRC/.opencode/agents" -maxdepth 1 -type f -name 'ocsp-*.md' | sort
+find "$SRC/.opencode/agents" -maxdepth 1 -type f -name 'oc-*.md' | sort
 ```
 
 If any required source path is missing, stop and report the missing path.
@@ -94,7 +94,7 @@ TARGET="/absolute/path/to/project"
 mkdir -p "$TARGET/.opencode/agents"
 
 cp "$SRC/.opencode/agents/OCSuperpower.md" "$TARGET/.opencode/agents/"
-cp "$SRC"/.opencode/agents/ocsp-*.md "$TARGET/.opencode/agents/"
+cp "$SRC"/.opencode/agents/oc-*.md "$TARGET/.opencode/agents/"
 
 AGENT_DIR="$TARGET/.opencode/agents"
 ```
@@ -109,7 +109,7 @@ OC_CONFIG="$HOME/.config/opencode"
 mkdir -p "$OC_CONFIG/agents"
 
 cp "$SRC/.opencode/agents/OCSuperpower.md" "$OC_CONFIG/agents/"
-cp "$SRC"/.opencode/agents/ocsp-*.md "$OC_CONFIG/agents/"
+cp "$SRC"/.opencode/agents/oc-*.md "$OC_CONFIG/agents/"
 
 AGENT_DIR="$OC_CONFIG/agents"
 ```
@@ -132,7 +132,7 @@ After either install type, check every installed agent file:
 
 1. It starts with YAML frontmatter (`---`).
 2. `OCSuperpower.md` has `mode: primary`.
-3. Every `ocsp-*.md` has `mode: subagent`.
+3. Every `oc-*.md` has `mode: subagent`.
 4. `dispatching-parallel-agents` was not created as a separate agent.
 
 Suggested validation command:
@@ -149,7 +149,7 @@ if not agent_dir.exists():
 
 errors = []
 
-files = sorted(agent_dir.glob('OCSuperpower.md')) + sorted(agent_dir.glob('ocsp-*.md'))
+files = sorted(agent_dir.glob('OCSuperpower.md')) + sorted(agent_dir.glob('oc-*.md'))
 
 for path in files:
     text = path.read_text()
@@ -169,8 +169,8 @@ for path in files:
     if path.name == 'OCSuperpower.md' and 'mode: primary' not in fm:
         errors.append(f'{path}: OCSuperpower must be mode: primary')
 
-    if path.name.startswith('ocsp-') and 'mode: subagent' not in fm:
-        errors.append(f'{path}: ocsp agent must be mode: subagent')
+    if path.name.startswith('oc-') and 'mode: subagent' not in fm:
+        errors.append(f'{path}: oc agent must be mode: subagent')
 
     if 'dispatching-parallel-agents' in path.name:
         errors.append(
@@ -204,7 +204,7 @@ After installing, report:
 * the install path;
 * the number of installed agent files;
 * whether `OCSuperpower.md` is primary;
-* whether all `ocsp-*` files are subagents;
+* whether all `oc-*` files are subagents;
 * whether model customization was skipped or completed;
 * any warnings about config-path assumptions;
 * whether the temporary clone was deleted.

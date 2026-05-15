@@ -128,11 +128,11 @@ Use stronger reasoning models for orchestration, planning, debugging, review, an
 | Group | Agent files | Recommended profile |
 |---|---|---|
 | Primary orchestration | `OCSuperpower.md` | strongest coding/reasoning model; good long context; reliable tool use |
-| Planning and architecture | `ocsp-brainstorming.md`, `ocsp-writing-plans.md` | strong reasoning model; good long context |
-| Debugging, review, verification | `ocsp-systematic-debugging.md`, `ocsp-requesting-code-review.md`, `ocsp-receiving-code-review.md`, `ocsp-verification-before-completion.md` | strong reasoning model; conservative; evidence-focused |
-| Implementation and TDD | `ocsp-subagent-driven-development.md`, `ocsp-executing-plans.md`, `ocsp-test-driven-development.md` | strong coding model; can be cost-optimized if tests are reliable |
-| Git workflow | `ocsp-git-worktrees.md`, `ocsp-finishing-development-branch.md` | fast, reliable coding model usually sufficient |
-| Skill authoring | `ocsp-writing-skills.md` | strong instruction-writing and reasoning model |
+| Planning and architecture | `oc-brainstormer.md`, `oc-planner.md` | strong reasoning model; good long context |
+| Debugging, review, verification | `oc-debugger.md`, `oc-reviewer.md`, `oc-feedback.md`, `oc-verifier.md` | strong reasoning model; conservative; evidence-focused |
+| Implementation and TDD | `oc-executor.md`, `oc-tdd.md` | strong coding model; can be cost-optimized if tests are reliable |
+| Git workflow | `oc-finisher.md` | fast, reliable coding model usually sufficient |
+| Skill authoring | `oc-skills.md` | strong instruction-writing and reasoning model |
 
 ## Edit procedure
 
@@ -201,7 +201,7 @@ After editing, verify:
 
 ```bash
 test -f "$AGENT_DIR/OCSuperpower.md"
-find "$AGENT_DIR" -maxdepth 1 -type f \( -name 'OCSuperpower.md' -o -name 'ocsp-*.md' \) -print | sort
+find "$AGENT_DIR" -maxdepth 1 -type f \( -name 'OCSuperpower.md' -o -name 'oc-*.md' \) -print | sort
 grep -R "^model:" "$AGENT_DIR" 2>/dev/null || true
 ```
 

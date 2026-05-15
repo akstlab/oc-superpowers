@@ -71,7 +71,7 @@ Collect a mapping like:
 
 ```text
 OCSuperpower.md -> provider/model-id
-ocsp-writing-plans.md -> provider/model-id
+oc-planner.md -> provider/model-id
 ...
 ```
 
@@ -113,7 +113,7 @@ Before copying, verify the required source files exist:
 
 ```bash
 test -f "$SRC/.opencode/agents/OCSuperpower.md"
-find "$SRC/.opencode/agents" -maxdepth 1 -type f -name 'ocsp-*.md' | sort
+find "$SRC/.opencode/agents" -maxdepth 1 -type f -name 'oc-*.md' | sort
 ```
 
 If any required source path is missing, stop and report the missing path.
@@ -126,7 +126,7 @@ For local installs:
 mkdir -p "$TARGET/.opencode/agents"
 
 cp "$SRC/.opencode/agents/OCSuperpower.md" "$TARGET/.opencode/agents/"
-cp "$SRC"/.opencode/agents/ocsp-*.md "$TARGET/.opencode/agents/"
+cp "$SRC"/.opencode/agents/oc-*.md "$TARGET/.opencode/agents/"
 
 AGENT_DIR="$TARGET/.opencode/agents"
 ```
@@ -137,7 +137,7 @@ For global installs:
 mkdir -p "$OC_CONFIG/agents"
 
 cp "$SRC/.opencode/agents/OCSuperpower.md" "$OC_CONFIG/agents/"
-cp "$SRC"/.opencode/agents/ocsp-*.md "$OC_CONFIG/agents/"
+cp "$SRC"/.opencode/agents/oc-*.md "$OC_CONFIG/agents/"
 
 AGENT_DIR="$OC_CONFIG/agents"
 ```
@@ -169,14 +169,14 @@ If cleanup fails, report the temp path so the user can remove it manually.
 Verify:
 
 1. `OCSuperpower.md` exists and has `mode: primary`.
-2. Every `ocsp-*.md` exists and has `mode: subagent`.
+2. Every `oc-*.md` exists and has `mode: subagent`.
 3. `dispatching-parallel-agents` does not exist as a standalone agent.
 4. Existing `model:` assignments were preserved or intentionally replaced.
 
 Suggested checks:
 
 ```bash
-find "$AGENT_DIR" -maxdepth 1 -type f \( -name 'OCSuperpower.md' -o -name 'ocsp-*.md' \) | sort
+find "$AGENT_DIR" -maxdepth 1 -type f \( -name 'OCSuperpower.md' -o -name 'oc-*.md' \) | sort
 grep -R "^model:" "$AGENT_DIR" 2>/dev/null || true
 ```
 

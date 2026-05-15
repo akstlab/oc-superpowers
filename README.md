@@ -38,7 +38,7 @@ https://raw.githubusercontent.com/akstlab/oc-superpowers/main/docs/CUSTOMIZE-MOD
 ## What is included
 
 - `.opencode/agents/OCSuperpower.md` — primary agent based on `using-superpowers`.
-- `.opencode/agents/ocsp-*.md` — optimized subagents converted from the remaining uploaded skills.
+- `.opencode/agents/oc-*.md` — optimized subagents for design, planning, execution, TDD, debugging, verification, review, feedback, finishing, and skill authoring.
 - `.opencode/ocsuperpower/source-skills/` — preserved original uploaded skills for audit/reference.
 - `docs/INSTALL.md` — OpenCode-run install procedure.
 - `docs/UPDATE.md` — OpenCode-run update procedure.
@@ -51,18 +51,16 @@ https://raw.githubusercontent.com/akstlab/oc-superpowers/main/docs/CUSTOMIZE-MOD
 
 Subagents:
 
-- `ocsp-brainstorming`
-- `ocsp-writing-plans`
-- `ocsp-git-worktrees`
-- `ocsp-subagent-driven-development`
-- `ocsp-executing-plans`
-- `ocsp-test-driven-development`
-- `ocsp-systematic-debugging`
-- `ocsp-verification-before-completion`
-- `ocsp-requesting-code-review`
-- `ocsp-receiving-code-review`
-- `ocsp-finishing-development-branch`
-- `ocsp-writing-skills`
+- `oc-brainstormer`
+- `oc-planner`
+- `oc-executor`
+- `oc-tdd`
+- `oc-debugger`
+- `oc-verifier`
+- `oc-reviewer`
+- `oc-feedback`
+- `oc-finisher`
+- `oc-skills`
 
 ## Recommended first use
 
